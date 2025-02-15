@@ -1,0 +1,35 @@
+/* Estilo para o carrossel de boas-vindas */
+.welcome-carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    /* Reduzido horizontalmente */
+    height: 150px;
+    /* Reduzido verticalmente */
+    margin: 0 auto 20px auto;
+    border-radius: 10px;
+}
+
+.carousel-image {
+    width: 100%;
+    /* Largura total do contêiner */
+    height: 100%;
+    /* Altura total do contêiner */
+    border-radius: 10px;
+}
+
+.welcome-carousel h1 {
+    position: absolute;
+    color: #FFFFFF;
+    font-size: 24px;
+    font-weight: normal;
+    letter-spacing: 2px;
+    /* Aumenta o espaçamento das letras */
+}
+
+/* Sublinhado para o texto "FlowTeams" */
+.underline {
+    text-decoration: underline;
+}

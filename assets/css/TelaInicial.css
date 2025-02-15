@@ -1,0 +1,196 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+/* Configurações gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #EFEDED;
+    display: flex;
+    height: 100vh;
+}
+
+/* Estilo para o menu lateral */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 100%;
+    background-color: #ffffff;
+    padding: 6px 10px;
+    box-shadow: 5px 0 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
+    border-radius: 0 20px 20px 0; /* Bordas arredondadas no sidebar */
+}
+
+.sidebar.active {
+    width: 240px;
+}
+
+/* Nome do site */
+.sidebar .logo_content {
+    display: flex;
+    align-items: center;
+    color: #000000; /* Nome em preto */
+    height: 50px;
+    width: 100%;
+    font-size: 25px;
+    font-weight: 600;
+    margin-left: 5px;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active .logo_content {
+    opacity: 1;
+}
+
+/* Barra de busca dentro do sidebar */
+.search-bar-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    padding: 5px;
+    background-color: #0055ff; /* Fundo azul (#0055ff) */
+    border-radius: 20px;
+    transition: all 0.5s ease;
+}
+
+.search-bar-container .search-icon {
+    color: #ffffff; /* Ícone branco */
+    font-size: 16px;
+    margin-left: 3px; /* Move o ícone da barra de pesquisa para a esquerda */
+}
+
+.search-bar-container .search-bar {
+    width: 100%;
+    padding: 5px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+    margin-left: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    color: #ffffff; /* Texto branco */
+}
+
+.search-bar-container .search-bar::placeholder {
+    color: #ffffff; /* Placeholder branco */
+    opacity: 0.7;
+}
+
+.sidebar.active .search-bar-container .search-bar {
+    opacity: 1;
+}
+
+/* Menu com opções de navegação */
+.sidebar .menu {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    
+    gap: 10px; /* Espaçamento entre os ícones */
+  
+    margin-left: 0px;
+}
+
+.sidebar .menu button {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 10px;
+    color: #605F5F;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    
+    gap: 10px;
+    border-radius: 15px; /* Bordas mais arredondadas */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave */
+}
+
+.sidebar .menu button i {
+    font-size: 20px;
+    margin-left: 0px; /* Move os ícones dos botões para a esquerda */
+}
+
+.sidebar .menu button .menu_text {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.sidebar.active .menu button .menu_text {
+    opacity: 1;
+}
+
+.sidebar .menu button:hover {
+    background-color: #0055ff; /* Fundo azul (#0055ff) ao passar o mouse */
+    color: #ffffff; /* Texto branco ao passar o mouse */
+}
+
+/* Conteúdo principal */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    transition: margin-left 0.5s ease;
+}
+
+.sidebar.active ~ .main-content {
+    margin-left: 240px;
+}
+
+/* Componente branco que agrupa o carrossel e a seção de designs recentes */
+.content-wrapper {
+    flex: 1;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo para a seção de designs recentes */
+.recent-designs h2 {
+    font-size: 20px;
+    color: #605F5F;
+    margin-bottom: 15px;
+}
+
+.designs-grid {
+    display: flex;
+    gap: 20px;
+}
+
+.design {
+    width: 220px;
+    background-color: #F2F2F2;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.design-thumbnail {
+    width: 100%;
+    height: 120px;
+    background-color: #C8C8C8;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.design p {
+    color: #000000;
+    font-size: 14px;
+}
