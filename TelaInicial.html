@@ -41,6 +41,13 @@
     <div class="main-content">
         <!-- Componente branco que agrupa o carrossel e a seção de designs recentes -->
         <div class="content-wrapper">
+            <!-- Ícones de perfil, notificação e configuração -->
+            <div class="icons-container">
+                <i class="bi bi-bell notification-icon"></i>
+                <i class="bi bi-gear settings-icon" onclick="window.location.href='./Configuracoes.html'"></i>
+                <i class="bi bi-person-circle profile-icon"></i>
+            </div>
+
             <!-- Carrossel de boas-vindas -->
             <div class="welcome-carousel">
                 <img src="./assets/img/Carrossel.png" alt="Carrossel" class="carousel-image">
@@ -50,31 +57,14 @@
             <!-- Seção de designs recentes -->
             <section class="recent-designs">
                 <h2>Projetos recentes</h2>
-                <div class="designs-grid">
-                    <!-- Cada design recente com ícone e texto -->
-                    <div class="design">
-                        <div class="design-thumbnail"></div>
-                        <p>Trabalho</p>
-                    </div>
-                    <div class="design">
-                        <div class="design-thumbnail"></div>
-                        <p>Pirâmide de comport...</p>
-                    </div>
-                    <div class="design">
-                        <div class="design-thumbnail"></div>
-                        <p>Design em grupo</p>
-                    </div>
-                    <div class="design">
-                        <div class="design-thumbnail"></div>
-                        <p>Trabalho sem nome</p>
-                    </div>
-                </div>
+               
             </section>
         </div>
     </div>
 
     <link rel="stylesheet" href="./assets/css/TelaInicial.css">
     <script src="./assets/js/sidebar.js"></script>
+    <script src="./assets/js/TelaInicial.js"></script>
 </body>
 
 </html>

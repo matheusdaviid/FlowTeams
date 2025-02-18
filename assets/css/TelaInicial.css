@@ -174,23 +174,95 @@ body {
     gap: 20px;
 }
 
-.design {
-    width: 220px;
-    background-color: #F2F2F2;
+/* Container dos ícones */
+.icons-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Estilo para os ícones */
+.icons-container i {
+    font-size: 24px;
+    color: #605F5F;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.icons-container i:hover {
+    color: #0055ff; /* Cor azul ao passar o mouse */
+}
+
+/* Ajuste no content-wrapper para acomodar os ícones */
+.content-wrapper {
+    position: relative; /* Adicionado para posicionar os ícones corretamente */
+    flex: 1;
+    background-color: #FFFFFF;
+    border-radius: 20px;
     padding: 20px;
-    border-radius: 10px;
-    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+/* Estilo para o dropdown de notificações */
+.notification-dropdown {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 15px; /* Bordas mais arredondadas */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Sombra mais suave */
+    padding: 20px; /* Mais espaçamento interno */
+    width: 300px; /* Largura maior */
+    z-index: 1000;
+    font-family: 'Poppins', sans-serif; /* Fonte consistente com o restante da página */
+    color: #605F5F; /* Cor do texto */
+    display: none; /* Inicialmente oculto */
 }
 
-.design-thumbnail {
-    width: 100%;
-    height: 120px;
-    background-color: #C8C8C8;
-    border-radius: 10px;
-    margin-bottom: 10px;
+/* Título da notificação */
+.notification-dropdown h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #000000; /* Cor mais escura para o título */
 }
 
-.design p {
-    color: #000000;
+/* Mensagem de notificação */
+.notification-dropdown p {
+    margin: 0;
     font-size: 14px;
+    text-align: center;
+    padding: 10px;
+    background-color: #f9f9f9; /* Fundo mais claro para a mensagem */
+    border-radius: 10px; /* Bordas arredondadas */
+}
+
+/* Efeito ao passar o mouse sobre a mensagem */
+.notification-dropdown p:hover {
+    background-color: #f1f1f1; /* Fundo mais escuro ao passar o mouse */
+    cursor: pointer;
+}
+
+/* Ícone de notificação */
+.notification-icon {
+    position: relative;
+}
+
+/* Indicador de notificação (pode ser usado para notificações futuras) */
+.notification-icon::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 10px;
+    height: 10px;
+    background-color: #ff4d4d; /* Cor vermelha para indicar notificações */
+    border-radius: 50%;
+    display: none; /* Inicialmente oculto */
 }
