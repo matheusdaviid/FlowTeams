@@ -3,8 +3,19 @@ document.addEventListener('DOMContentLoaded', function () {
     const projectsGrid = document.getElementById('projectsGrid');
     const btnAlterar = document.querySelector('.btn-alterar');
     const btnExcluir = document.querySelector('.btn-excluir');
+    const successPopup = document.getElementById('successPopup');
+    const successMessage = document.getElementById('successMessage');
 
     let selectedProject = null; // Armazena o projeto selecionado para edição
+
+    // Função para exibir pop-up de sucesso
+    function showSuccessPopup(message) {
+        successMessage.textContent = message;
+        successPopup.classList.add('show');
+        setTimeout(() => {
+            successPopup.classList.remove('show');
+        }, 3000); // O pop-up desaparece após 3 segundos
+    }
 
     // Função para adicionar um projeto à lista
     function addProject(title, startDate, endDate, description) {
@@ -50,9 +61,11 @@ document.addEventListener('DOMContentLoaded', function () {
             selectedProject.classList.remove('selected');
             selectedProject = null;
             btnExcluir.style.display = 'none'; // Oculta o botão de excluir
+            showSuccessPopup('Alterado com sucesso!');
         } else {
             // Adicionar novo projeto
             addProject(title, startDate, endDate, description);
+            showSuccessPopup('Salvo com sucesso!');
         }
 
         // Limpar o formulário
@@ -83,6 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
             selectedProject = null;
             btnExcluir.style.display = 'none'; // Oculta o botão de excluir
             projectForm.reset(); // Limpa o formulário
+            showSuccessPopup('Excluído com sucesso!');
         }
     });
 });
