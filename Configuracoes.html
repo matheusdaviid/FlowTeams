@@ -23,13 +23,8 @@
 
     <!-- Conteúdo principal -->
     <div class="main-content">
-        <!-- Cabeçalho -->
-        <div class="header">
-            <h1>Perfil</h1>
-        </div>
-
-        <!-- Seção de perfil -->
-        <div class="profile-section">
+        <!-- Seção de Perfil -->
+        <div id="perfil" class="profile-section">
             <div class="profile-info">
                 <!-- Ícone de perfil grande -->
                 <div class="profile-icon-large">
@@ -43,26 +38,27 @@
             <div class="info-container">
                 <div class="info-item">
                     <span>Endereço de e-mail</span>
-                    <p>matheus.david@senacsp.edu.br</p>
-                    <button class="edit-button"><i class="bi bi-pencil"></i> Editar</button>
+                    <div class="email-edit-container">
+                        <input type="email" id="email-input" value="matheus.david@senacsp.edu.br" readonly>
+                        <button class="edit-button" onclick="toggleEmailEdit()"><i class="bi bi-pencil"></i> Editar</button>
+                    </div>
                 </div>
                 <div class="info-item">
                     <span>Idioma</span>
-                    <p>Português (Brasil)</p>
-                    <button class="edit-button"><i class="bi bi-pencil"></i> Editar</button>
+                    <p id="language-text">Português (Brasil)</p>
+                    <button class="edit-button" onclick="openLanguageModal()"><i class="bi bi-pencil"></i> Editar</button>
                 </div>
             </div>
         </div>
 
-
-        <div class="header">
+        <!-- Seção de Configurações -->
+        <div id="configuracoes" class="header">
             <h1>Configurações</h1>
         </div>
 
         <!-- Opções de configuração -->
         <div class="settings-options">
             <h2>Geral</h2>
-
             <div class="option">
                 <i class="bi bi-shield-lock"></i>
                 <span>Login e Segurança</span>
@@ -88,7 +84,6 @@
         <!-- Configurações de acessibilidade -->
         <div class="accessibility-settings">
             <h2>Acessibilidade</h2>
-
             <div class="setting">
                 <label class="switch">
                     <input type="checkbox" id="shortcuts">
@@ -96,7 +91,6 @@
                 </label>
                 <label for="shortcuts">Os atalhos de uma só tecla requerem o uso da tecla modificadora Alt.</label>
             </div>
-
             <div class="setting">
                 <label class="switch">
                     <input type="checkbox" id="high-contrast">
@@ -104,7 +98,6 @@
                 </label>
                 <label for="high-contrast">Alto contraste entre o texto e o fundo é mantido, incluindo fundos em gradiente.</label>
             </div>
-
             <div class="setting">
                 <label class="switch">
                     <input type="checkbox" id="captions">
@@ -112,7 +105,6 @@
                 </label>
                 <label for="captions">Legendas serão geradas e exibidas em todo o conteúdo de áudio e vídeo do FlowTeams que contenha falas.</label>
             </div>
-
             <div class="setting">
                 <label class="switch">
                     <input type="checkbox" id="open-links">
@@ -123,6 +115,18 @@
         </div>
     </div>
 
+    <!-- Modal de seleção de idioma -->
+    <div id="languageModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeLanguageModal()">&times;</span>
+            <h2>Selecione um idioma</h2>
+            <ul id="language-list">
+                <!-- Lista de idiomas será preenchida dinamicamente via JavaScript -->
+            </ul>
+        </div>
+    </div>
+
     <script src="./assets/js/Configuracoes.js"></script>
+    <link rel="stylesheet" href="./assets/css/Configuracoes.css">
 </body>
 </html>
