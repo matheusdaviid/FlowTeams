@@ -17,6 +17,34 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 3000); // O pop-up desaparece após 3 segundos
     }
 
+    // Função para validar as datas
+    function validateDates(startDate, endDate) {
+        // Verifica se as datas estão no formato correto (aaaa-mm-dd)
+        const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+        if (!dateRegex.test(startDate) || !dateRegex.test(endDate)) {
+            alert('Por favor, insira datas válidas no formato aaaa-mm-dd.');
+            return false;
+        }
+
+        // Verifica se o ano tem exatamente 4 dígitos
+        const startYear = startDate.split('-')[0];
+        const endYear = endDate.split('-')[0];
+        if (startYear.length !== 4 || endYear.length !== 4) {
+            alert('O ano deve ter exatamente 4 dígitos.');
+            return false;
+        }
+
+        // Verifica se a data de término é posterior à data de início
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+        if (start > end) {
+            alert('A data de término deve ser posterior à data de início.');
+            return false;
+        }
+
+        return true;
+    }
+
     // Função para adicionar um projeto à lista
     function addProject(title, startDate, endDate, description) {
         const projectDiv = document.createElement('div');
@@ -49,6 +77,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const startDate = document.getElementById('startDate').value;
         const endDate = document.getElementById('endDate').value;
         const description = document.getElementById('projectDescription').value;
+
+        // Valida as datas antes de prosseguir
+        if (!validateDates(startDate, endDate)) {
+            return; // Interrompe o envio se as datas forem inválidas
+        }
 
         if (selectedProject) {
             // Editar projeto existente

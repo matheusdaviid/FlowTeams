@@ -11,7 +11,22 @@ body {
     display: flex;
     height: 100vh;
 }
+/* Estilo para o conteúdo da logo */
+.sidebar .logo_content {
+    display: flex;
+    align-items: center;
+    color: #000000; /* Nome em preto */
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
 
+/* Estilo para a logo */
+.sidebar .logo_content .logo {
+    width: 30px; /* Ajuste o tamanho da logo conforme necessário */
+    height: 30px;
+    margin-right: 10px; /* Espaçamento entre a logo e o texto */
+}
 /* Menu lateral */
 .sidebar {
     position: fixed;

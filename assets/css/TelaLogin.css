@@ -15,6 +15,19 @@ body {
     justify-content: center;
     flex-direction: column;
     height: 100vh;
+    position: relative; /* Adicionado para posicionar a logo */
+}
+
+/* Logo do site */
+.logo-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+}
+
+.logo-container img {
+    height: 70px; /* Ajuste o tamanho da logo conforme necessário */
 }
 
 .container {
@@ -259,6 +272,7 @@ body {
 .fade-out {
     opacity: 1 !important;
 }
+
 /* Mensagem de confirmação */
 .confirmation-message {
     position: fixed;
