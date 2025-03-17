@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlowTeams - Gerenciamento de Equipes</title>
-    <link rel="stylesheet" href="./assets/css/TelaApresentacao.css">
+    <link rel="stylesheet" href="../assets/css/TelaApresentacao.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Pré-carregar recursos críticos -->
-    <link rel="preload" href="./assets/img/logo-flowteams.png" as="image">
-    <link rel="preload" href="./assets/img/img-banner-flowteams.jpg" as="image">
+    <link rel="preload" href="../assets/img/logo-flowteams.png" as="image">
+    <link rel="preload" href="../assets/img/img-banner-flowteams.jpg" as="image">
 </head>
 
 <body>
@@ -17,12 +17,12 @@
     <header class="cabecalho">
         <div class="logo">
             <!-- logo do site aqui -->
-            <img src="./assets/img/logo-flowteams.png" alt="Logo FlowTeams">
+            <img src="../assets/img/logo-flowteams.png" alt="Logo FlowTeams">
             <span>FlowTeams</span>
         </div>
         <nav class="menu">
-            <button class="btn-entrar" onclick="window.location.href='TelaLogin.html'">Entrar</button>
-            <button class="btn-inscrever" onclick="window.location.href='TelaLogin.html'">Inscrever-se</button>
+            <button class="btn-entrar" onclick="window.location.href='./TelaLogin.php'">Entrar</button>
+            <button class="btn-inscrever" onclick="window.location.href='TelaLogin.php'">Inscrever-se</button>
         </nav>
     </header>
 
@@ -31,7 +31,7 @@
         <div class="banner-content">
             <h1>Gerencie sua equipe de forma eficiente</h1>
             <p>FlowTeams ajuda você a organizar projetos, tarefas e equipes em um só lugar.</p>
-            <button class="btn-comecar" onclick="window.location.href='TelaLogin.html'">Comece agora</button>
+            <button class="btn-comecar" onclick="window.location.href='TelaLogin.php'">Comece agora</button>
         </div>
     </section>
 
@@ -39,17 +39,17 @@
     <section class="cards" id="recursos">
         <h2>Recursos Principais</h2>
         <div class="card-container">
-            <div class="card" onclick="window.location.href='TelaLogin.html'">
+            <div class="card" onclick="window.location.href='TelaLogin.php'">
                 <i class="fas fa-tasks"></i>
                 <h3>Gestão de Tarefas</h3>
                 <p>Organize e priorize tarefas de forma simples e intuitiva.</p>
             </div>
-            <div class="card" onclick="window.location.href='TelaLogin.html'">
+            <div class="card" onclick="window.location.href='TelaLogin.php'">
                 <i class="fas fa-users"></i>
                 <h3>Colaboração em Equipe</h3>
                 <p>Facilite a comunicação e o trabalho em equipe.</p>
             </div>
-            <div class="card" onclick="window.location.href='TelaLogin.html'">
+            <div class="card" onclick="window.location.href='TelaLogin.php'">
                 <i class="fas fa-chart-line"></i>
                 <h3>Relatórios e Análises</h3>
                 <p>Acompanhe o progresso com relatórios detalhados.</p>
@@ -71,7 +71,7 @@
             </div>
             <div class="banner-section-image">
                 <!-- imagem do banner aqui -->
-                <img src="./assets/img/img-banner-flowteams.jpg" alt="Banner FlowTeams">
+                <img src="../assets/img/img-banner-flowteams.jpg" alt="Banner FlowTeams">
             </div>
         </div>
     </section>
@@ -103,7 +103,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="TelaApresentacao.js" defer></script>
+    <script src="../javaScript/TelaApresentacao.js" defer></script>
 </body>
 
 </html>

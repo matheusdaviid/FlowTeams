@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlowTeams - Calendário</title>
-    <link rel="stylesheet" href="./assets/css/TelaCalendario.css">
+    <link rel="stylesheet" href="../assets/css/TelaCalendario.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
@@ -14,7 +14,7 @@
     <div class="sidebar">
         <!-- Nome do site -->
         <div class="logo_content">
-            <img src="./assets/img/logo-flowteams.png" alt="Logo FlowTeams" class="logo">
+            <img src="../assets/img/logo-flowteams.png" alt="Logo FlowTeams" class="logo">
             <span class="logo_name">FlowTeams</span>
         </div>
 
@@ -28,15 +28,15 @@
 
         <!-- Menu com opções de navegação dispostas verticalmente -->
         <div class="menu">
-            <button onclick="window.location.href='./TelaInicial.html'">
+            <button onclick="window.location.href='./Telainicial.php'">
                 <i class="bi bi-house"></i>
                 <span class="menu_text">Início</span>
             </button>
-            <button onclick="window.location.href='./TelaProjetos.html'">
+            <button onclick="window.location.href='./TelaProjetos.php'">
                 <i class="bi bi-kanban"></i>
                 <span class="menu_text">Projetos</span>
             </button>
-            <button onclick="window.location.href='./TelaCalendario.html'">
+            <button onclick="window.location.href='./TelaCalendario.php'">
                 <i class="bi bi-calendar2-date"></i>
                 <span class="menu_text">Calendário</span>
             </button>
@@ -93,8 +93,8 @@
         </div>
     </div>
 
-    <script src="./assets/js/sidebar.js"></script>
-    <script src="./assets/js/TelaCalendario.js"></script>
+    <script src="../javaScript/sidebar.js"></script>
+    <script src="../javaScript/TelaCalendario.js"></script>
 </body>
 
 </html>

@@ -4,21 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configurações - FlowTeams</title>
-    <link rel="stylesheet" href="./assets/css/Configuracoes.css">
+    <link rel="stylesheet" href="../assets/css/Configuracoes.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
     <!-- Menu lateral esquerdo -->
     <div class="sidebar">
         <div class="logo_content">
-            <img src="./assets/img/logo-flowteams.png" alt="Logo FlowTeams" class="logo">
+            <img src="../assets/img/logo-flowteams.png" alt="Logo FlowTeams" class="logo">
             <span class="logo_name">FlowTeams</span>
         </div>
         <div class="menu">
-            <button onclick="window.location.href='./TelaInicial.html'"><i class="bi bi-house"></i> <span class="menu_text">Início</span></button>
-            <button onclick="window.location.href='./TelaProjetos.html'"><i class="bi bi-kanban"></i> <span class="menu_text">Projetos</span></button>
-            <button><i class="bi bi-calendar2-date"></i> <span class="menu_text">Calendário</span></button>
-           
+            <button onclick="window.location.href='./Telainicial.php'"><i class="bi bi-house"></i> <span class="menu_text">Início</span></button>
+            <button onclick="window.location.href='./TelaProjetos.php'"><i class="bi bi-kanban"></i> <span class="menu_text">Projetos</span></button>
+            <button onclick="window.location.href='./TelaCalendario.php'"><i class="bi bi-calendar2-date"></i> <span class="menu_text">Calendário</span></button>
         </div>
     </div>
 
@@ -127,7 +126,7 @@
         </div>
     </div>
 
-    <script src="./assets/js/Configuracoes.js"></script>
-    <link rel="stylesheet" href="./assets/css/Configuracoes.css">
+    <script src="../javaScript/Configuracoes.js"></script>
+    <link rel="stylesheet" href="../assets/css/Configuracoes.css">
 </body>
 </html>
