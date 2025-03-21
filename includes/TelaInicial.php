@@ -1,14 +1,3 @@
-<?php
-session_start();
-
-// Verifica se o usuário está logado
-if (!isset($_SESSION['user_email'])) {
-    header('Location: TelaLogin.php');
-    exit();
-}
-
-$email = $_SESSION['user_email'];
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -57,17 +46,15 @@ $email = $_SESSION['user_email'];
 
     <!-- Conteúdo principal do site -->
     <div class="main-content">
-        <!-- Ícones de perfil, notificação e configuração -->
-        <div class="icons-container">
-            <span class="user-email"><?php echo htmlspecialchars($email); ?></span>
-            <i class="bi bi-bell notification-icon"></i>
-            <i class="bi bi-gear settings-icon" onclick="window.location.href='./Configuracoes.php#configuracoes'"></i>
-            <i class="bi bi-person-circle profile-icon" onclick="window.location.href='./Configuracoes.php#perfil'"></i>
-            <button class="logout-button" onclick="window.location.href='./logout.php'">Sair</button>
-        </div>
-
         <!-- Componente branco que agrupa o carrossel e a seção de designs recentes -->
         <div class="content-wrapper">
+            <!-- Ícones de perfil, notificação e configuração -->
+            <div class="icons-container">
+                <i class="bi bi-bell notification-icon"></i>
+                <i class="bi bi-gear settings-icon" onclick="window.location.href='./Configuracoes.php#configuracoes'"></i>
+                <i class="bi bi-person-circle profile-icon" onclick="window.location.href='./Configuracoes.php#perfil'"></i>
+            </div>
+
             <!-- Carrossel de boas-vindas -->
             <div class="welcome-carousel">
                 <img src="../assets/img/Carrossel.png" alt="Carrossel" class="carousel-image">
@@ -83,6 +70,7 @@ $email = $_SESSION['user_email'];
     </div>
 
     <script src="../javaScript/sidebar.js"></script>
+    <script src="../javaScript/"></script>
 </body>
 
 </html>

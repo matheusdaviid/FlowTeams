@@ -18,7 +18,7 @@
     <div class="container" id="container">
         <!-- Formulário de Inscrever-se -->
         <div class="form-container sign-up">
-            <form id="signupForm" action="includes/processar_cadastro.php" method="POST">
+            <form id="signupForm" action="processar_cadastro.php" method="POST">
                 <h1>Criar Conta</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -35,7 +35,7 @@
 
         <!-- Formulário de Entrar -->
         <div class="form-container sign-in">
-            <form id="loginForm" action="includes/processar_login.php" method="POST">
+            <form id="loginForm" action="processar_login.php" method="POST">
                 <h1>Entrar</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
