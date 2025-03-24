@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlowTeams - Gerenciamento de Equipes</title>
-    <link rel="stylesheet" href="../assets/css/TelaApresentacao.css">
+    <link rel="stylesheet" href="./assets/css/TelaApresentacao.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Pré-carregar recursos críticos -->
-    <link rel="preload" href="../assets/img/logo-flowteams.png" as="image">
-    <link rel="preload" href="../assets/img/img-banner-flowteams.jpg" as="image">
+    <link rel="preload" href="./assets/img/logo-flowteams.png" as="image">
+    <link rel="preload" href="./assets/img/img-banner-flowteams.jpg" as="image">
 </head>
 
 <body>
@@ -17,7 +17,7 @@
     <header class="cabecalho">
         <div class="logo">
             <!-- logo do site aqui -->
-            <img src="../assets/img/logo-flowteams.png" alt="Logo FlowTeams">
+            <img src="./assets/img/logo-flowteams.png" alt="Logo FlowTeams">
             <span>FlowTeams</span>
         </div>
         <nav class="menu">
@@ -71,7 +71,7 @@
             </div>
             <div class="banner-section-image">
                 <!-- imagem do banner aqui -->
-                <img src="../assets/img/img-banner-flowteams.jpg" alt="Banner FlowTeams">
+                <img src="./assets/img/img-banner-flowteams.jpg" alt="Banner FlowTeams">
             </div>
         </div>
     </section>
@@ -103,7 +103,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="../javaScript/TelaApresentacao.js" defer></script>
+    <script src="./javaScript/TelaApresentacao.js" defer></script>
 </body>
 
 </html>

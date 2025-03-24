@@ -1,25 +1,33 @@
+<?php
+session_start();
+
+// Verifica se o usuário está logado
+if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
+    header('Location: TelaLogin.php');
+    exit;
+}
+
+// Conexão com o banco de dados
+require_once 'conexao.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlowTeams</title>
-    <link rel="stylesheet" href="../assets/css/TelaInicial.css">
-    <link rel="stylesheet" href="../assets/css/carrossel.css">
+    <title>FlowTeams - Início</title>
+    <link rel="stylesheet" href="./assets/css/Telainicial.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <!-- Menu lateral esquerdo -->
     <div class="sidebar">
-        <!-- Nome do site -->
         <div class="logo_content">
-            <img src="../assets/img/logo-flowteams.png" alt="Logo FlowTeams" class="logo">
+            <img src="./assets/img/logo-flowteams.png" alt="Logo FlowTeams" class="logo">
             <span class="logo_name">FlowTeams</span>
         </div>
 
-        <!-- Barra de busca dentro do sidebar -->
         <div class="search-bar-container">
             <div class="search-icon-container">
                 <i class="bi bi-search search-icon"></i>
@@ -27,9 +35,8 @@
             <input type="text" placeholder="Pesquise aqui" class="search-bar">
         </div>
 
-        <!-- Menu com opções de navegação dispostas verticalmente -->
         <div class="menu">
-            <button onclick="window.location.href='./Telainicial.php'">
+            <button onclick="window.location.href='./Telainicial.php'" class="active">
                 <i class="bi bi-house"></i>
                 <span class="menu_text">Início</span>
             </button>
@@ -46,31 +53,72 @@
 
     <!-- Conteúdo principal do site -->
     <div class="main-content">
-        <!-- Componente branco que agrupa o carrossel e a seção de designs recentes -->
+        <!-- Cabeçalho com barra de busca e ícones -->
+        <div class="header">
+            <div class="header-content">
+                <div class="welcome-message">
+                    Bem-vindo, <?php echo $_SESSION['nome_usuario'] ?? 'Usuário'; ?>!
+                </div>
+                <div class="user-actions">
+                    <i class="bi bi-bell-fill notification-icon"></i>
+                    <i class="bi bi-gear-fill config-icon"></i>
+                    <img src="./assets/img/user-avatar.png" alt="Perfil" class="user-avatar">
+                </div>
+            </div>
+        </div>
+
+        <!-- Conteúdo principal -->
         <div class="content-wrapper">
-            <!-- Ícones de perfil, notificação e configuração -->
-            <div class="icons-container">
-                <i class="bi bi-bell notification-icon"></i>
-                <i class="bi bi-gear settings-icon" onclick="window.location.href='./Configuracoes.php#configuracoes'"></i>
-                <i class="bi bi-person-circle profile-icon" onclick="window.location.href='./Configuracoes.php#perfil'"></i>
+            <!-- Seção de boas-vindas -->
+            <div class="welcome-section">
+                <h1>Dashboard</h1>
+                <p>Acompanhe suas atividades e projetos recentes</p>
             </div>
 
-            <!-- Carrossel de boas-vindas -->
-            <div class="welcome-carousel">
-                <img src="../assets/img/Carrossel.png" alt="Carrossel" class="carousel-image">
-                <h1>BEM VINDO AO <span class="underline">FLOWTEAMS</span></h1>
+            <!-- Seção de projetos recentes -->
+            <div class="section-projects">
+                <div class="section-header">
+                    <h2>Projetos Recentes</h2>
+                    <a href="TelaProjetos.php" class="view-all">Ver todos</a>
+                </div>
+                
+                <div class="projects-grid">
+                    <?php
+                    try {
+                        $stmt = $pdo->prepare("SELECT * FROM tb_projetos WHERE usuario_id = ? ORDER BY data_inicio DESC LIMIT 3");
+                        $stmt->execute([$_SESSION['usuario_id']]);
+                        
+                        if ($stmt->rowCount() > 0) {
+                            while ($projeto = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                echo '
+                                <div class="project-card">
+                                    <div class="project-thumbnail"></div>
+                                    <h3>'.$projeto['titulo'].'</h3>
+                                    <div class="project-meta">
+                                        <span><i class="bi bi-calendar"></i> '.date('d/m/Y', strtotime($projeto['data_inicio'])).'</span>
+                                    </div>
+                                    <p class="project-description">'.substr($projeto['descricao'], 0, 80).'...</p>
+                                    <a href="TelaProjetos.php" class="btn-ver-projeto"><i class="bi bi-arrow-right"></i> Ver projeto</a>
+                                </div>';
+                            }
+                        } else {
+                            echo '<div class="no-projects">
+                                <p>Nenhum projeto encontrado</p>
+                                <a href="TelaProjetos.php" class="btn-new-project"><i class="bi bi-plus-lg"></i> Criar projeto</a>
+                            </div>';
+                        }
+                    } catch (PDOException $e) {
+                        echo '<div class="error-message">
+                            <i class="bi bi-exclamation-triangle"></i>
+                            <p>Erro ao carregar projetos</p>
+                        </div>';
+                    }
+                    ?>
+                </div>
             </div>
-
-            <!-- Seção de designs recentes -->
-            <section class="recent-designs">
-                <h2>Projetos recentes</h2>
-                <!-- Conteúdo dos projetos recentes -->
-            </section>
         </div>
     </div>
 
-    <script src="../javaScript/sidebar.js"></script>
-    <script src="../javaScript/"></script>
+    <script src="./javaScript/sidebar.js"></script>
 </body>
-
 </html>

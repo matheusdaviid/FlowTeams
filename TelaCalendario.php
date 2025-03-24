@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlowTeams - Calendário</title>
-    <link rel="stylesheet" href="../assets/css/TelaCalendario.css">
+    <link rel="stylesheet" href="./assets/css/TelaCalendario.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
@@ -14,7 +14,7 @@
     <div class="sidebar">
         <!-- Nome do site -->
         <div class="logo_content">
-            <img src="../assets/img/logo-flowteams.png" alt="Logo FlowTeams" class="logo">
+            <img src="./assets/img/logo-flowteams.png" alt="Logo FlowTeams" class="logo">
             <span class="logo_name">FlowTeams</span>
         </div>
 
@@ -93,8 +93,8 @@
         </div>
     </div>
 
-    <script src="../javaScript/sidebar.js"></script>
-    <script src="../javaScript/TelaCalendario.js"></script>
+    <script src="./javaScript/sidebar.js"></script>
+    <script src="./javaScript/TelaCalendario.js"></script>
 </body>
 
 </html>

@@ -1,17 +1,26 @@
+<?php
+session_start();
+
+// Verifica se o usuário está logado
+if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
+    header('Location: TelaLogin.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configurações - FlowTeams</title>
-    <link rel="stylesheet" href="../assets/css/Configuracoes.css">
+    <link rel="stylesheet" href="./assets/css/Configuracoes.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
     <!-- Menu lateral esquerdo -->
     <div class="sidebar">
         <div class="logo_content">
-            <img src="../assets/img/logo-flowteams.png" alt="Logo FlowTeams" class="logo">
+            <img src="./assets/img/logo-flowteams.png" alt="Logo FlowTeams" class="logo">
             <span class="logo_name">FlowTeams</span>
         </div>
         <div class="menu">
@@ -39,7 +48,7 @@
                 <div class="info-item">
                     <span>Endereço de e-mail</span>
                     <div class="email-edit-container">
-                        <input type="email" id="email-input" value="matheus.david@senacsp.edu.br" readonly>
+                        <input type="email" id="email-input" value="<?php echo htmlspecialchars($_SESSION['usuario_email']); ?>" readonly>
                         <button class="edit-button" onclick="toggleEmailEdit()"><i class="bi bi-pencil"></i> Editar</button>
                     </div>
                 </div>
@@ -126,7 +135,6 @@
         </div>
     </div>
 
-    <script src="../javaScript/Configuracoes.js"></script>
-    <link rel="stylesheet" href="../assets/css/Configuracoes.css">
+    <script src="./javaScript/Configuracoes.js"></script>
 </body>
 </html>

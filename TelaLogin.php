@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/TelaLogin.css">
+    <link rel="stylesheet" href="./assets/css/TelaLogin.css">
     <title>Página de Login</title>
 </head>
 
 <body>
     <!-- Logo do site -->
     <div class="logo-container">
-        <img src="../assets/img/logo-flowteams.png" alt="Logo FlowTeams">
+        <img src="./assets/img/logo-flowteams.png" alt="Logo FlowTeams">
     </div>
 
     <div class="container" id="container">
@@ -74,7 +74,7 @@
     <!-- Mensagens de confirmação -->
     <div id="confirmationMessage" class="confirmation-message"></div>
 
-    <script src="../javaScript/TelaLogin.js"></script>
+    <script src="./javaScript/TelaLogin.js"></script>
 </body>
 
 </html>

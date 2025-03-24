@@ -1,17 +1,42 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Recupera o e-mail do localStorage
-    const userEmail = localStorage.getItem('userEmail') || 'matheus.david@senacsp.edu.br';
-    document.getElementById('email-input').value = userEmail;
-
     // Recupera o idioma salvo ao carregar a página
     const userLanguage = localStorage.getItem('userLanguage') || 'Português (Brasil)';
     document.getElementById('language-text').textContent = userLanguage;
+
+    // Configura os eventos dos switches de acessibilidade
+    setupAccessibilitySwitches();
 });
+
+// Função para configurar os switches
+function setupAccessibilitySwitches() {
+    const switches = {
+        'shortcuts': false,
+        'high-contrast': false,
+        'captions': true,
+        'open-links': false
+    };
+
+    // Carrega as configurações salvas
+    Object.keys(switches).forEach(id => {
+        const savedValue = localStorage.getItem(`setting_${id}`);
+        if (savedValue !== null) {
+            switches[id] = savedValue === 'true';
+            document.getElementById(id).checked = switches[id];
+        }
+    });
+
+    // Configura os event listeners
+    Object.keys(switches).forEach(id => {
+        document.getElementById(id).addEventListener('change', function() {
+            localStorage.setItem(`setting_${id}`, this.checked);
+        });
+    });
+}
 
 // Função para alternar entre edição e leitura do e-mail
 function toggleEmailEdit() {
     const emailInput = document.getElementById('email-input');
-    const editButton = document.querySelector('.edit-button');
+    const editButton = document.querySelector('.email-edit-container .edit-button');
 
     if (emailInput.readOnly) {
         emailInput.readOnly = false;
@@ -20,13 +45,34 @@ function toggleEmailEdit() {
     } else {
         const newEmail = emailInput.value.trim();
         if (newEmail && newEmail.includes('@')) {
-            localStorage.setItem('userEmail', newEmail);
-            emailInput.readOnly = true;
-            editButton.innerHTML = '<i class="bi bi-pencil"></i> Editar';
+            // Envia a alteração para o servidor
+            updateEmail(newEmail).then(success => {
+                if (success) {
+                    emailInput.readOnly = true;
+                    editButton.innerHTML = '<i class="bi bi-pencil"></i> Editar';
+                    alert('E-mail atualizado com sucesso!');
+                } else {
+                    alert('Erro ao atualizar o e-mail. Tente novamente.');
+                }
+            });
         } else {
             alert('Por favor, insira um e-mail válido.');
         }
     }
+}
+
+// Função para atualizar o e-mail no servidor
+function updateEmail(newEmail) {
+    return fetch('atualizar_email.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `email=${encodeURIComponent(newEmail)}`
+    })
+    .then(response => response.json())
+    .then(data => data.success)
+    .catch(() => false);
 }
 
 // Lista de idiomas
@@ -76,7 +122,7 @@ function closeLanguageModal() {
 
 // Função para selecionar um idioma
 function selectLanguage(lang) {
-    localStorage.setItem('userLanguage', lang.name); // Salva o idioma no localStorage
-    document.getElementById('language-text').textContent = lang.name; // Atualiza o texto na tela
-    closeLanguageModal(); // Fecha o modal
+    localStorage.setItem('userLanguage', lang.name);
+    document.getElementById('language-text').textContent = lang.name;
+    closeLanguageModal();
 }

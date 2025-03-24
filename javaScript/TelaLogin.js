@@ -1,97 +1,83 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('container');
     const registerBtn = document.getElementById('register');
     const loginBtn = document.getElementById('login');
     const loginForm = document.getElementById('loginForm');
     const signupForm = document.getElementById('signupForm');
-    const transitionOverlay = document.getElementById('transitionOverlay');
     const confirmationMessage = document.getElementById('confirmationMessage');
 
-    // Toggle entre Entrar e Inscrever-se
-    registerBtn.addEventListener('click', () => {
-        container.classList.add("active");
-    });
+    // Alternar entre login e cadastro
+    registerBtn.addEventListener('click', () => container.classList.add("active"));
+    loginBtn.addEventListener('click', () => container.classList.remove("active"));
 
-    loginBtn.addEventListener('click', () => {
-        container.classList.remove("active");
-    });
-
-    // Função para exibir mensagem de confirmação
-    function showConfirmationMessage(message) {
+    // Mostrar mensagens
+    function showMessage(message, isError = false) {
         confirmationMessage.textContent = message;
+        confirmationMessage.style.color = isError ? 'red' : 'green';
         confirmationMessage.style.display = 'block';
-        setTimeout(() => {
-            confirmationMessage.style.display = 'none';
-        }, 3000); // Mensagem desaparece após 3 segundos
+        setTimeout(() => confirmationMessage.style.display = 'none', 3000);
     }
 
-    // Formulário de Entrar
-    loginForm.addEventListener('submit', function (event) {
-        event.preventDefault();
+    // Login
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = this.email.value;
+        const senha = this.password.value;
 
-        const email = document.getElementById('loginEmail').value;
-        const senha = document.getElementById('loginPassword').value;
-
-        if (email && senha) {
-            // Exibe a mensagem "Entrando..."
-            showConfirmationMessage("Entrando...");
-
-            // Inicia a animação de transição
-            transitionOverlay.classList.add('fade-out');
-
-            // Redireciona para a tela inicial após 1 segundo
-            setTimeout(() => {
-                window.location.href = '../TelaInicial.php';
-            }, 1000);
-        } else {
-            alert('Por favor, preencha todos os campos.');
+        if (!email || !senha) {
+            showMessage('Preencha todos os campos', true);
+            return;
         }
+
+        showMessage('Entrando...');
+
+        fetch('processar_login.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(senha)}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showMessage(data.message);
+                setTimeout(() => window.location.href = 'TelaInicial.php', 1000);
+            } else {
+                showMessage(data.message, true);
+            }
+        })
+        .catch(() => showMessage('Erro ao conectar', true));
     });
 
-    // Formulário de Inscrever-se
-    signupForm.addEventListener('submit', function (event) {
-        event.preventDefault();
+    // Cadastro
+    signupForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const email = this.email.value;
+        const senha = this.password.value;
 
-        const email = document.getElementById('signupEmail').value;
-        const senha = document.getElementById('signupPassword').value;
-
-        if (email && senha) {
-            // Salva os dados do usuário no localStorage
-            localStorage.setItem('userEmail', email);
-            localStorage.setItem('userPassword', senha);
-
-            // Exibe a mensagem "Inscrição concluída"
-            showConfirmationMessage("Inscrição concluída");
-
-            // Limpa o formulário
-            signupForm.reset();
-        } else {
-            alert('Por favor, preencha todos os campos.');
+        if (!email || !senha) {
+            showMessage('Preencha todos os campos', true);
+            return;
         }
-        // Formulário de Entrar
-loginForm.addEventListener('submit', function (event) {
-    event.preventDefault();
 
-    const email = document.getElementById('loginEmail').value;
-    const senha = document.getElementById('loginPassword').value;
+        showMessage('Cadastrando...');
 
-    if (email && senha) {
-        // Armazena o e-mail no localStorage
-        localStorage.setItem('userEmail', email);
-
-        // Exibe a mensagem "Entrando..."
-        showConfirmationMessage("Entrando...");
-
-        // Inicia a animação de transição
-        transitionOverlay.classList.add('fade-out');
-
-        // Redireciona para a tela inicial após 1 segundo
-        setTimeout(() => {
-            window.location.href = '../TelaInicial.php';
-        }, 1000);
-    } else {
-        alert('Por favor, preencha todos os campos.');
-    }
-});
+        fetch('processar_cadastro.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(senha)}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showMessage(data.message);
+                this.reset();
+                container.classList.remove("active");
+            } else {
+                showMessage(data.message, true);
+            }
+        })
+        .catch(() => showMessage('Erro ao conectar', true));
     });
 });

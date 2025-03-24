@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+// Verifica se o usuário está logado
+if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
+    header('Location: TelaLogin.php');
+    exit;
+}
+
+// Conexão com o banco de dados
+require_once 'conexao.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -5,7 +17,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlowTeams - Projetos</title>
-    <link rel="stylesheet" href="../assets/css/TelaProjetos.css">
+    <link rel="stylesheet" href="./assets/css/TelaProjetos.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
@@ -14,7 +26,7 @@
     <div class="sidebar">
         <!-- Nome do site -->
         <div class="logo_content">
-            <img src="../assets/img/logo-flowteams.png" alt="Logo FlowTeams" class="logo">
+            <img src="./assets/img/logo-flowteams.png" alt="Logo FlowTeams" class="logo">
             <span class="logo_name">FlowTeams</span>
         </div>
 
@@ -49,6 +61,7 @@
         <div class="content-wrapper">
             <h1>Cadastrar Projeto</h1>
             <form id="projectForm" action="processar_projeto.php" method="POST">
+                <input type="hidden" id="projectId" name="projectId" value="">
                 <div class="form-group">
                     <label for="projectTitle">Título:</label>
                     <input type="text" id="projectTitle" name="projectTitle" placeholder="Digite aqui o nome do projeto" required>
@@ -76,20 +89,35 @@
             <section class="recent-projects">
                 <h2>Projetos Cadastrados</h2>
                 <div class="projects-grid" id="projectsGrid">
-                    <!-- Projetos serão adicionados dinamicamente aqui -->
+                    <?php
+                    // Busca projetos no banco de dados
+                    try {
+                        $stmt = $pdo->prepare("SELECT * FROM tb_projetos WHERE usuario_id = ? ORDER BY data_inicio DESC");
+                        $stmt->execute([$_SESSION['usuario_id']]);
+                        while ($projeto = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            echo '
+                            <div class="project" data-id="'.$projeto['id'].'">
+                                <div class="project-thumbnail"></div>
+                                <p>'.$projeto['titulo'].'</p>
+                                <small>Início: '.date('d/m/Y', strtotime($projeto['data_inicio'])).' - Término: '.date('d/m/Y', strtotime($projeto['data_termino'])).'</small>
+                                <p class="project-description">'.$projeto['descricao'].'</p>
+                            </div>';
+                        }
+                    } catch (PDOException $e) {
+                        echo '<p>Erro ao carregar projetos: '.$e->getMessage().'</p>';
+                    }
+                    ?>
                 </div>
             </section>
         </div>
     </div>
 
-    <script src="../javaScript/sidebar.js"></script>
-    <link rel="stylesheet" href="../assets/css/TelaProjetos.css">
-    <script src="../javaScript/TelaProjetos.js"></script>
+    <script src="./javaScript/sidebar.js"></script>
+    <script src="./javaScript/TelaProjetos.js"></script>
 
     <!-- Pop-ups de sucesso -->
     <div id="successPopup" class="popup">
         <span id="successMessage"></span>
     </div>
 </body>
-
 </html>
