@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Redireciona para a tela inicial após 1 segundo
             setTimeout(() => {
-                window.location.href = '../includes/TelaInicial.php';
+                window.location.href = '../TelaInicial.php';
             }, 1000);
         } else {
             alert('Por favor, preencha todos os campos.');
@@ -87,7 +87,7 @@ loginForm.addEventListener('submit', function (event) {
 
         // Redireciona para a tela inicial após 1 segundo
         setTimeout(() => {
-            window.location.href = '../includes/TelaInicial.php';
+            window.location.href = '../TelaInicial.php';
         }, 1000);
     } else {
         alert('Por favor, preencha todos os campos.');
