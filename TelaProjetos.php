@@ -90,21 +90,26 @@ require_once 'conexao.php';
                 <h2>Projetos Cadastrados</h2>
                 <div class="projects-grid" id="projectsGrid">
                     <?php
-                    // Busca projetos no banco de dados
                     try {
                         $stmt = $pdo->prepare("SELECT * FROM tb_projetos WHERE usuario_id = ? ORDER BY data_inicio DESC");
                         $stmt->execute([$_SESSION['usuario_id']]);
                         while ($projeto = $stmt->fetch(PDO::FETCH_ASSOC)) {
                             echo '
-                            <div class="project" data-id="'.$projeto['id'].'">
-                                <div class="project-thumbnail"></div>
-                                <p>'.$projeto['titulo'].'</p>
-                                <small>Início: '.date('d/m/Y', strtotime($projeto['data_inicio'])).' - Término: '.date('d/m/Y', strtotime($projeto['data_termino'])).'</small>
+                            <div class="project-card" data-id="'.$projeto['id'].'">
+                                <div class="project-thumbnail">'.substr($projeto['titulo'], 0, 1).'</div>
+                                <h3>'.$projeto['titulo'].'</h3>
+                                <div class="project-meta">
+                                    <span><i class="bi bi-calendar"></i> '.date('d/m/Y', strtotime($projeto['data_inicio'])).'</span>
+                                    <span><i class="bi bi-calendar-check"></i> '.date('d/m/Y', strtotime($projeto['data_termino'])).'</span>
+                                </div>
                                 <p class="project-description">'.$projeto['descricao'].'</p>
                             </div>';
                         }
                     } catch (PDOException $e) {
-                        echo '<p>Erro ao carregar projetos: '.$e->getMessage().'</p>';
+                        echo '<div class="error-message">
+                            <i class="bi bi-exclamation-triangle"></i>
+                            <p>Erro ao carregar projetos</p>
+                        </div>';
                     }
                     ?>
                 </div>

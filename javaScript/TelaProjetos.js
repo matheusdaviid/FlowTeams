@@ -64,15 +64,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Seleciona projeto ao clicar
     projectsGrid.addEventListener('click', function(e) {
-        const projectDiv = e.target.closest('.project');
-        if (!projectDiv) return;
+        const projectCard = e.target.closest('.project-card');
+        if (!projectCard) return;
 
+        // Remove a seleção anterior
         if (selectedProject) {
             selectedProject.classList.remove('selected');
         }
         
-        selectedProject = projectDiv;
+        // Adiciona a nova seleção
+        selectedProject = projectCard;
         selectedProject.classList.add('selected');
+        
+        // Mostra o botão de excluir
         btnExcluir.style.display = 'inline-block';
     });
 
@@ -80,8 +84,13 @@ document.addEventListener('DOMContentLoaded', function () {
     btnAlterar.addEventListener('click', function() {
         if (selectedProject) {
             const projectId = selectedProject.getAttribute('data-id');
-            const title = selectedProject.querySelector('p').textContent;
-            const dates = selectedProject.querySelector('small').textContent.split(' - ');
+            const title = selectedProject.querySelector('h3').textContent;
+            const description = selectedProject.querySelector('.project-description').textContent;
+            
+            // Obtém as datas dos spans
+            const dateSpans = selectedProject.querySelectorAll('.project-meta span');
+            const startDateText = dateSpans[0].textContent.replace(' Início: ', '').trim();
+            const endDateText = dateSpans[1].textContent.replace(' Término: ', '').trim();
             
             // Converte datas do formato brasileiro para o formato do input date
             function brToDate(brDate) {
@@ -89,11 +98,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 return `${year}-${month}-${day}`;
             }
 
+            // Preenche o formulário com os dados do projeto selecionado
             document.getElementById('projectId').value = projectId;
             document.getElementById('projectTitle').value = title;
-            document.getElementById('startDate').value = brToDate(dates[0].replace('Início: ', ''));
-            document.getElementById('endDate').value = brToDate(dates[1].replace('Término: ', ''));
-            document.getElementById('projectDescription').value = selectedProject.querySelector('.project-description').textContent;
+            document.getElementById('startDate').value = brToDate(startDateText);
+            document.getElementById('endDate').value = brToDate(endDateText);
+            document.getElementById('projectDescription').value = description;
         } else {
             alert('Selecione um projeto para editar.');
         }
@@ -101,28 +111,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Excluir projeto
     btnExcluir.addEventListener('click', function() {
-        if (selectedProject && confirm('Tem certeza que deseja excluir este projeto?')) {
-            const projectId = selectedProject.getAttribute('data-id');
-            
-            fetch('excluir_projeto.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: `id=${projectId}`
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    showSuccessPopup(data.message);
-                } else {
-                    alert(data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert('Erro ao excluir projeto.');
-            });
+        if (selectedProject) {
+            if (confirm('Tem certeza que deseja excluir este projeto?')) {
+                const projectId = selectedProject.getAttribute('data-id');
+                
+                fetch('excluir_projeto.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `id=${projectId}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showSuccessPopup(data.message);
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert('Erro ao excluir projeto.');
+                });
+            }
+        } else {
+            alert('Selecione um projeto para excluir.');
         }
     });
 });
