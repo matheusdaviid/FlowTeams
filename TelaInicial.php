@@ -57,12 +57,11 @@ require_once 'conexao.php';
         <div class="header">
             <div class="header-content">
                 <div class="welcome-message">
-                    Bem-vindo, <?php echo $_SESSION['nome_usuario'] ?? 'Usuário'; ?>!
+                    Bem-vindo, <?php echo htmlspecialchars($_SESSION['nome_usuario'] ?? 'Usuário'); ?>!
                 </div>
                 <div class="user-actions">
-                    <i class="bi bi-bell-fill notification-icon"></i>
-                    <i class="bi bi-gear-fill config-icon"></i>
-                    <img src="./assets/img/user-avatar.png" alt="Perfil" class="user-avatar">
+                    <a href="Configuracoes.php"><i class="bi bi-gear-fill config-icon"></i></a>
+                    <a href="Configuracoes.php"><i class="bi bi-person-fill profile-icon"></i></a>
                 </div>
             </div>
         </div>
@@ -121,4 +120,4 @@ require_once 'conexao.php';
 
     <script src="./javaScript/sidebar.js"></script>
 </body>
-</html>
+</html>                   
