@@ -49,22 +49,45 @@
         <div class="content-wrapper">
             <!-- Calendário -->
             <div class="calendar-container">
-                <h1 class="calendar-title">Calendário</h1>
+                <h1 class="calendar-title"><i class="bi bi-calendar2-date"></i> Calendário</h1>
                 <div class="calendar">
                     <div class="calendar-header">
-                        <button id="prev-month" class="calendar-nav-button">&lt;</button>
+                        <button id="prev-month" class="calendar-nav-button" title="Mês anterior"><i class="bi bi-chevron-left"></i></button>
                         <div class="calendar-month-year">
                             <span id="current-month"></span> <span id="current-year"></span>
                         </div>
-                        <button id="next-month" class="calendar-nav-button">&gt;</button>
+                        <button id="next-month" class="calendar-nav-button" title="Próximo mês"><i class="bi bi-chevron-right"></i></button>
                     </div>
+                    
+                    <div class="calendar-grid" id="days-of-week">
+                        <div class="day-of-week">Dom</div>
+                        <div class="day-of-week">Seg</div>
+                        <div class="day-of-week">Ter</div>
+                        <div class="day-of-week">Qua</div>
+                        <div class="day-of-week">Qui</div>
+                        <div class="day-of-week">Sex</div>
+                        <div class="day-of-week">Sáb</div>
+                    </div>
+                    
                     <div id="calendar-grid" class="calendar-grid"></div>
                 </div>
-                <!-- Rodapé com botão de eventos -->
+                
+                <!-- Rodapé com botão de eventos e estatísticas -->
                 <div class="calendar-footer">
+                    <div class="calendar-stats">
+                        <div class="stat-box">
+                            <i class="bi bi-calendar-event"></i>
+                            <span id="total-events">0 eventos</span>
+                        </div>
+                        <div class="stat-box">
+                            <i class="bi bi-star"></i>
+                            <span id="important-events">0 importantes</span>
+                        </div>
+                    </div>
+                    
                     <button id="show-events-button">
                         <i class="bi bi-calendar-event"></i>
-                        <span>Eventos</span>
+                        <span>Ver Eventos</span>
                     </button>
                 </div>
             </div>
@@ -75,12 +98,31 @@
     <div id="event-popup" class="event-popup">
         <div class="event-popup-content">
             <span class="close-popup">&times;</span>
-            <h2>Adicionar Evento</h2>
-            <input type="text" id="event-name" placeholder="Nome do evento">
-            <textarea id="event-description" placeholder="Descrição do evento"></textarea>
-            <input type="time" id="event-time" placeholder="Horário do evento">
-            <button id="save-event">Salvar</button>
-            <button id="exit-popup">Sair</button>
+            <h2><i class="bi bi-plus-circle"></i> Adicionar Evento</h2>
+            <form id="event-form" method="POST">
+                <input type="hidden" id="event-data" name="event-data">
+                
+                <label for="event-name">Nome do Evento</label>
+                <input type="text" id="event-name" name="event-name" placeholder="Reunião com equipe" required>
+                
+                <label for="event-description">Descrição</label>
+                <textarea id="event-description" name="event-description" placeholder="Detalhes do evento"></textarea>
+                
+                <label for="event-time">Horário</label>
+                <input type="time" id="event-time" name="event-time" required>
+                
+                <label for="event-priority">Prioridade</label>
+                <select id="event-priority" name="event-priority">
+                    <option value="normal">Normal</option>
+                    <option value="important">Importante</option>
+                    <option value="urgent">Urgente</option>
+                </select>
+                
+                <div class="button-group">
+                    <button type="button" id="exit-popup" class="secondary">Cancelar</button>
+                    <button type="submit" id="save-event">Salvar Evento</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -88,11 +130,15 @@
     <div id="events-list-popup" class="event-popup">
         <div class="event-popup-content">
             <span class="close-popup">&times;</span>
-            <h2>Eventos do Mês</h2>
+            <h2><i class="bi bi-list-ul"></i> Eventos do Mês</h2>
             <ul id="events-list"></ul>
         </div>
     </div>
 
+    <script>
+        // Passa os eventos do PHP para o JavaScript
+        const eventsFromDB = <?php echo $eventsJson; ?>;
+    </script>
     <script src="./javaScript/sidebar.js"></script>
     <script src="./javaScript/TelaCalendario.js"></script>
 </body>

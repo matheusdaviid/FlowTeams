@@ -1,22 +1,38 @@
- /* Estilo para o wrapper do conteúdo (container branco) */
- .content-wrapper {
+.content-wrapper {
     background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 15px;
+    border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    width: 90%;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 15px auto;
 }
 
-/* Estilo para o fundo atrás do container branco */
 body {
-    background-color: #EFEDED;
+    background-color: #f5f7fa;
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Estilo para o conteúdo da logo */
+/* Sidebar (mantido conforme solicitado) */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 100%;
+    background-color: #ffffff;
+    padding: 6px 10px;
+    box-shadow: 5px 0 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
+    border-radius: 0 20px 20px 0;
+    z-index: 100;
+}
+
+.sidebar.active {
+    width: 240px;
+}
+
 .sidebar .logo_content {
     display: flex;
     align-items: center;
@@ -35,14 +51,12 @@ body {
     opacity: 1;
 }
 
-/* Estilo para a logo */
 .sidebar .logo_content .logo {
     width: 30px;
     height: 30px;
     margin-right: 10px;
 }
 
-/* Estilo para o nome do site */
 .sidebar .logo_content .logo_name {
     opacity: 0;
     transition: opacity 0.5s ease;
@@ -52,25 +66,6 @@ body {
     opacity: 1;
 }
 
-/* Estilo para o menu lateral */
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 50px;
-    height: 100%;
-    background-color: #ffffff;
-    padding: 6px 10px;
-    box-shadow: 5px 0 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.5s ease;
-    border-radius: 0 20px 20px 0;
-}
-
-.sidebar.active {
-    width: 240px;
-}
-
-/* Barra de busca dentro do sidebar */
 .search-bar-container {
     display: flex;
     align-items: center;
@@ -109,7 +104,6 @@ body {
     opacity: 1;
 }
 
-/* Menu com opções de navegação */
 .sidebar .menu {
     margin-top: 20px;
     display: flex;
@@ -152,132 +146,204 @@ body {
     color: #ffffff;
 }
 
-/* Conteúdo principal */
 .main-content {
     flex: 1;
-    padding: 20px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     margin-left: 50px;
     transition: margin-left 0.5s ease;
+    background-color: #f5f7fa;
+    min-height: 100vh;
 }
 
-.sidebar.active~.main-content {
-    margin-left: 240px;
-}
-
-/* Estilo para o container do calendário */
 .calendar-container {
     width: 100%;
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-/* Estilo para o título do calendário */
 .calendar-title {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 600;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #0055ff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-/* Estilo para o cabeçalho do calendário */
+.calendar-title i {
+    color: #0055ff;
+}
+
 .calendar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 8px;
 }
 
 .calendar-month-year {
     flex-grow: 1;
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     color: #333;
+    text-transform: capitalize;
 }
 
-/* Estilo para os botões de navegação do calendário */
 .calendar-nav-button {
     background-color: #0055ff;
     color: #ffffff;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 8px 15px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
 }
 
 .calendar-nav-button:hover {
     background-color: #0044cc;
+    transform: scale(1.05);
 }
 
-/* Estilo para a grade do calendário */
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
+    gap: 6px;
+    margin-bottom: 15px;
 }
 
-/* Estilo para os dias do calendário */
-.calendar-grid .day {
-    background-color: #f0f0f0;
-    padding: 10px;
+.day-of-week {
     text-align: center;
-    border-radius: 5px;
-    font-size: 16px;
+    font-weight: 600;
+    color: #555;
+    padding: 6px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.calendar-grid .day {
+    background-color: #f8f9fa;
+    padding: 10px 6px;
+    text-align: center;
+    border-radius: 6px;
+    font-size: 14px;
     color: #333;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: all 0.3s ease;
     position: relative;
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 60px;
+    border: 1px solid #e9ecef;
 }
 
 .calendar-grid .day:hover {
-    background-color: #0055ff;
-    color: #ffffff;
+    background-color: #e6f0ff;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 6px rgba(0, 85, 255, 0.1);
 }
 
-/* Estilo para os pontos que indicam eventos */
+.calendar-grid .day.today {
+    background-color: #0055ff;
+    color: white;
+    font-weight: bold;
+}
+
+.calendar-grid .day.today::after {
+    background-color: white;
+}
+
 .calendar-grid .day.event::after {
     content: '';
     position: absolute;
-    bottom: 5px;
+    bottom: 6px;
     left: 50%;
     transform: translateX(-50%);
     width: 6px;
     height: 6px;
-    background-color: red;
+    background-color: #ff4757;
     border-radius: 50%;
 }
 
-/* Estilo para o rodapé com botão de eventos */
+.day-events {
+    margin-top: 3px;
+    font-size: 11px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #0055ff;
+    font-weight: 500;
+}
+
 .calendar-footer {
     display: flex;
-    justify-content: center;
-    margin-top: 20px;
+    justify-content: space-between;
+    margin-top: 15px;
+    align-items: center;
 }
 
 .calendar-footer button {
     background-color: #0055ff;
     color: #ffffff;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 8px 16px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    transition: background-color 0.3s ease;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
 }
 
 .calendar-footer button:hover {
     background-color: #0044cc;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 6px rgba(0, 85, 255, 0.2);
 }
 
 .calendar-footer button i {
-    font-size: 20px;
+    font-size: 18px;
 }
 
-/* Estilo para o pop-up de eventos */
+.calendar-stats {
+    display: flex;
+    gap: 10px;
+}
+
+.stat-box {
+    background-color: #f8f9fa;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-left: 3px solid #0055ff;
+}
+
+.stat-box i {
+    color: #0055ff;
+}
+
 .event-popup {
     display: none;
     position: fixed;
@@ -288,48 +354,177 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 
 .event-popup-content {
     background-color: #ffffff;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 12px;
     width: 300px;
-    text-align: center;
+    max-width: 90%;
+    text-align: left;
+    position: relative;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
 }
 
 .event-popup-content h2 {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #0055ff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.event-popup-content h2 i {
+    color: #0055ff;
+}
+
+.event-popup-content label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #555;
 }
 
 .event-popup-content input,
-.event-popup-content textarea {
+.event-popup-content textarea,
+.event-popup-content select {
     width: 100%;
     padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 13px;
+    transition: border 0.3s ease;
+}
+
+.event-popup-content input:focus,
+.event-popup-content textarea:focus {
+    border-color: #0055ff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 85, 255, 0.1);
+}
+
+.event-popup-content textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.event-popup-content .button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 15px;
 }
 
 .event-popup-content button {
     background-color: #0055ff;
     color: #ffffff;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 10px 16px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 16px;
-    margin: 5px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    font-weight: 500;
 }
 
 .event-popup-content button:hover {
     background-color: #0044cc;
 }
 
+.event-popup-content button.secondary {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.event-popup-content button.secondary:hover {
+    background-color: #e9ecef;
+}
+
 .close-popup {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 12px;
+    right: 12px;
     cursor: pointer;
-    font-size: 20px;
-}  
+    font-size: 22px;
+    color: #777;
+    transition: color 0.3s ease;
+}
+
+.close-popup:hover {
+    color: #333;
+}
+
+#events-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+#events-list li {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#events-list li:last-child {
+    border-bottom: none;
+}
+
+.event-info {
+    flex: 1;
+}
+
+.event-info .event-name {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 3px;
+}
+
+.event-info .event-details {
+    font-size: 12px;
+    color: #666;
+}
+
+#events-list button {
+    background-color: #ff4757;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+}
+
+#events-list button:hover {
+    background-color: #e84118;
+}
+
+@media (max-width: 768px) {
+    .calendar-grid .day {
+        padding: 6px 4px;
+        min-height: 50px;
+        font-size: 12px;
+    }
+    
+    .calendar-footer {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    
+    .calendar-stats {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
