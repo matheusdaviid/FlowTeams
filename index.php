@@ -7,7 +7,7 @@
     <script>
         // Redireciona para a tela de apresentação
         window.location.href = './TelaApresentacao.php';
-    </script>
+    </script>z
 </head>
 <body>
     <p>Se você não for redirecionado automaticamente, <a href="./TelaApresentacao.php">clique aqui</a>.</p>
