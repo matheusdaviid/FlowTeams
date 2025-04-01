@@ -1,14 +1,11 @@
 <?php
 session_start();
+require_once 'conexao.php';
 
-// Verifica se o usuário está logado
 if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
     header('Location: TelaLogin.php');
     exit;
 }
-
-// Conexão com o banco de dados
-require_once 'conexao.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -85,24 +82,32 @@ require_once 'conexao.php';
                 </div>
             </form>
 
-            <!-- Seção de projetos cadastrados -->
-            <section class="recent-projects">
+            <!-- Seção ÚNICA de projetos cadastrados -->
+            <div class="projects-container" id="projectsContainer">
                 <h2>Projetos Cadastrados</h2>
-                <div class="projects-grid" id="projectsGrid">
+                <div class="projects-grid">
                     <?php
                     try {
-                        $stmt = $pdo->prepare("SELECT * FROM tb_projetos WHERE usuario_id = ? ORDER BY data_inicio DESC");
+                        $stmt = $pdo->prepare("SELECT * FROM tb_projetos WHERE id_usuario = ? ORDER BY data_inicio DESC");
                         $stmt->execute([$_SESSION['usuario_id']]);
-                        while ($projeto = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                            echo '
-                            <div class="project-card" data-id="'.$projeto['id'].'">
-                                <div class="project-thumbnail">'.substr($projeto['titulo'], 0, 1).'</div>
-                                <h3>'.$projeto['titulo'].'</h3>
-                                <div class="project-meta">
-                                    <span><i class="bi bi-calendar"></i> '.date('d/m/Y', strtotime($projeto['data_inicio'])).'</span>
-                                    <span><i class="bi bi-calendar-check"></i> '.date('d/m/Y', strtotime($projeto['data_termino'])).'</span>
-                                </div>
-                                <p class="project-description">'.$projeto['descricao'].'</p>
+                        
+                        if ($stmt->rowCount() > 0) {
+                            while ($projeto = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                echo '
+                                <div class="project-card" data-id="'.$projeto['id'].'">
+                                    <div class="project-thumbnail">'.substr($projeto['titulo'], 0, 1).'</div>
+                                    <h3>'.$projeto['titulo'].'</h3>
+                                    <div class="project-meta">
+                                        <span><i class="bi bi-calendar"></i> '.date('d/m/Y', strtotime($projeto['data_inicio'])).'</span>
+                                        <span><i class="bi bi-calendar-check"></i> '.date('d/m/Y', strtotime($projeto['data_termino'])).'</span>
+                                    </div>
+                                    <p class="project-description">'.$projeto['descricao'].'</p>
+                                </div>';
+                            }
+                        } else {
+                            echo '<div class="no-projects">
+                                <i class="bi bi-info-circle"></i>
+                                <p>Nenhum projeto cadastrado ainda</p>
                             </div>';
                         }
                     } catch (PDOException $e) {
@@ -113,7 +118,7 @@ require_once 'conexao.php';
                     }
                     ?>
                 </div>
-            </section>
+            </div>
         </div>
     </div>
 

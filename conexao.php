@@ -1,8 +1,8 @@
 <?php
 $host = '127.0.0.1';
 $dbname = 'db_flowteams';
-$username = 'root'; // substitua pelo seu usuário
-$password = '';     // substitua pela sua senha
+$username = 'root';
+$password = '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
@@ -10,3 +10,4 @@ try {
 } catch (PDOException $e) {
     die("Erro na conexão com o banco de dados: " . $e->getMessage());
 }
+?>

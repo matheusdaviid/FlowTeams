@@ -1,3 +1,46 @@
+
+<?php
+session_start();
+require_once 'conexao.php';
+
+if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
+    header('Location: TelaLogin.php');
+    exit;
+}
+
+try {
+    $stmt = $pdo->prepare("SELECT * FROM tb_eventos WHERE id_usuario = ?");
+    $stmt->execute([$_SESSION['usuario_id']]);
+    $eventos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $eventsJson = json_encode($eventos);
+} catch (PDOException $e) {
+    $eventsJson = '[]';
+}
+try {
+    $stmt = $pdo->prepare("SELECT *, DATE_FORMAT(data_evento, '%Y-%m-%d') as data_formatada FROM tb_eventos WHERE id_usuario = ?");
+    $stmt->execute([$_SESSION['usuario_id']]);
+    $eventos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    // Formata os eventos para o formato esperado pelo JavaScript
+    $formattedEvents = [];
+    foreach ($eventos as $evento) {
+        $key = $evento['data_formatada'];
+        $formattedEvents[$key] = [
+            'name' => $evento['nome_evento'],
+            'description' => $evento['descricao_evento'],
+            'time' => $evento['horario'],
+            'priority' => $evento['prioridade']
+        ];
+    }
+    $eventsJson = json_encode($formattedEvents);
+} catch (PDOException $e) {
+    $eventsJson = '{}';
+}
+?>
+<script>
+    const eventsFromDB = <?= $eventsJson ?>;
+</script>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 

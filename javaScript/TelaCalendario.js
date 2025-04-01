@@ -161,28 +161,53 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    saveEventButton.addEventListener('click', () => {
+    saveEventButton.addEventListener('click', async () => {
         const eventName = eventNameInput.value.trim();
         const eventDescription = eventDescriptionInput.value.trim();
         const eventTime = eventTimeInput.value;
         const eventPriority = eventPriorityInput.value;
 
         if (eventName && selectedDay) {
-            events[selectedDay] = { 
-                name: eventName, 
-                description: eventDescription, 
-                time: eventTime, 
-                priority: eventPriority 
-            };
-            
-            localStorage.setItem('calendarEvents', JSON.stringify(events));
-            
-            updateCalendar();
-            eventPopup.style.display = 'none';
-            eventNameInput.value = '';
-            eventDescriptionInput.value = '';
-            eventTimeInput.value = '';
-            eventPriorityInput.value = 'normal';
+            try {
+                const response = await fetch('processar_evento.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        'nome_evento': eventName,
+                        'descricao': eventDescription,
+                        'horario': eventTime,
+                        'prioridade': eventPriority,
+                        'data_evento': selectedDay
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Atualiza tanto o localStorage quanto a exibição
+                    events[selectedDay] = { 
+                        name: eventName, 
+                        description: eventDescription, 
+                        time: eventTime, 
+                        priority: eventPriority 
+                    };
+                    
+                    localStorage.setItem('calendarEvents', JSON.stringify(events));
+                    updateCalendar();
+                    eventPopup.style.display = 'none';
+                    eventNameInput.value = '';
+                    eventDescriptionInput.value = '';
+                    eventTimeInput.value = '';
+                    eventPriorityInput.value = 'normal';
+                } else {
+                    alert(result.message || 'Erro ao salvar evento');
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Erro ao conectar com o servidor');
+            }
         } else if (!eventName) {
             alert('Por favor, insira um nome para o evento.');
         }

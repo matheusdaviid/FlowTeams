@@ -57,7 +57,7 @@ require_once 'conexao.php';
         <div class="header">
             <div class="header-content">
                 <div class="welcome-message">
-                    Bem-vindo, <?php echo htmlspecialchars($_SESSION['nome_usuario'] ?? 'Usuário'); ?>!
+                    Bem-vindo, <?php echo htmlspecialchars($_SESSION['usuario_email'] ?? 'Usuário'); ?>!
                 </div>
                 <div class="user-actions">
                     <a href="Configuracoes.php"><i class="bi bi-gear-fill config-icon"></i></a>
@@ -84,17 +84,18 @@ require_once 'conexao.php';
                 <div class="projects-grid">
                     <?php
                     try {
-                        $stmt = $pdo->prepare("SELECT * FROM tb_projetos WHERE usuario_id = ? ORDER BY data_inicio DESC LIMIT 3");
+                        $stmt = $pdo->prepare("SELECT * FROM tb_projetos WHERE id_usuario = ? ORDER BY data_inicio DESC LIMIT 3");
                         $stmt->execute([$_SESSION['usuario_id']]);
                         
                         if ($stmt->rowCount() > 0) {
                             while ($projeto = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                 echo '
-                                <div class="project-card">
-                                    <div class="project-thumbnail"></div>
+                                <div class="project-card" onclick="window.location.href=\'TelaProjetos.php\'">
+                                    <div class="project-thumbnail">'.substr($projeto['titulo'], 0, 1).'</div>
                                     <h3>'.$projeto['titulo'].'</h3>
                                     <div class="project-meta">
                                         <span><i class="bi bi-calendar"></i> '.date('d/m/Y', strtotime($projeto['data_inicio'])).'</span>
+                                        <span><i class="bi bi-calendar-check"></i> '.date('d/m/Y', strtotime($projeto['data_termino'])).'</span>
                                     </div>
                                     <p class="project-description">'.substr($projeto['descricao'], 0, 80).'...</p>
                                     <a href="TelaProjetos.php" class="btn-ver-projeto"><i class="bi bi-arrow-right"></i> Ver projeto</a>
@@ -102,6 +103,7 @@ require_once 'conexao.php';
                             }
                         } else {
                             echo '<div class="no-projects">
+                                <i class="bi bi-info-circle"></i>
                                 <p>Nenhum projeto encontrado</p>
                                 <a href="TelaProjetos.php" class="btn-new-project"><i class="bi bi-plus-lg"></i> Criar projeto</a>
                             </div>';
@@ -119,5 +121,11 @@ require_once 'conexao.php';
     </div>
 
     <script src="./javaScript/sidebar.js"></script>
+    <script>
+        // Torna os cards de projeto clicáveis
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.style.cursor = 'pointer';
+        });
+    </script>
 </body>
-</html>                   
+</html>

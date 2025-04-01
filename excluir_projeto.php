@@ -16,7 +16,7 @@ if (empty($projectId)) {
 }
 
 try {
-    $stmt = $pdo->prepare("DELETE FROM tb_projetos WHERE id = ? AND usuario_id = ?");
+    $stmt = $pdo->prepare("DELETE FROM tb_projetos WHERE id = ? AND id_usuario = ?");
     $stmt->execute([$projectId, $usuario_id]);
     
     if ($stmt->rowCount() > 0) {
