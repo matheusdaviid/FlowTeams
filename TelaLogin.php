@@ -34,7 +34,7 @@
                 <span>use seu e-mail e senha cadastrados</span>
                 <input type="email" id="loginEmail" name="email" placeholder="E-mail" required>
                 <input type="password" id="loginPassword" name="password" placeholder="Senha" required>
-                <a href="#">Esqueceu sua senha?</a>
+                <a href="esqueceu_senha.php" class="forgot-password">Esqueceu sua senha?</a>
                 <button type="submit" id="btnEntrar">Entrar</button>
             </form>
         </div>
@@ -62,15 +62,11 @@
     <!-- Mensagens de confirmação -->
     <div id="confirmationMessage" class="confirmation-message"></div>
 
-    <script src="./javaScript/TelaLogin.js"></script>
-
-        <!-- Tela de transição simplificada -->
-        <div class="transition-screen" id="transitionScreen">
+    <!-- Tela de transição simplificada -->
+    <div class="transition-screen" id="transitionScreen">
         <div class="spinner"></div>
     </div>
 
     <script src="./javaScript/TelaLogin.js"></script>
 </body>
-</body>
-
 </html>

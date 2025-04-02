@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     registerBtn.addEventListener('click', () => container.classList.add("active"));
     loginBtn.addEventListener('click', () => container.classList.remove("active"));
 
-    // Mostrar mensagens (versão corrigida)
+    // Mostrar mensagens
     function showMessage(message, isError = false) {
         confirmationMessage.textContent = message;
         confirmationMessage.className = 'confirmation-message ' + (isError ? 'error' : 'success');
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return errors;
     }
 
-    // Login (versão corrigida)
+    // Login
     loginForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(() => showMessage('Erro ao conectar com o servidor', true));
     });
 
-    // Cadastro (versão corrigida)
+    // Cadastro
     signupForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -111,7 +111,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.reset();
                 container.classList.remove("active");
                 
-                // Login automático após cadastro
                 if (data.redirect) {
                     transitionScreen.classList.add('active');
                     setTimeout(() => {
@@ -123,5 +122,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .catch(() => showMessage('Erro ao conectar', true));
+    });
+
+    // Transição para a tela de esqueceu senha
+    document.querySelectorAll('a.forgot-password').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            transitionScreen.classList.add('active');
+            setTimeout(() => {
+                window.location.href = 'esqueceu_senha.php';
+            }, 800);
+        });
     });
 });

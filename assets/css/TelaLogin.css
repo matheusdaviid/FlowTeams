@@ -15,10 +15,9 @@ body {
     justify-content: center;
     flex-direction: column;
     height: 100vh;
-    position: relative; /* Adicionado para posicionar a logo */
+    position: relative;
 }
 
-/* Logo do site */
 .logo-container {
     position: absolute;
     top: 20px;
@@ -27,7 +26,7 @@ body {
 }
 
 .logo-container img {
-    height: 70px; /* Ajuste o tamanho da logo conforme necessário */
+    height: 70px;
 }
 
 .container {
@@ -57,6 +56,16 @@ body {
     font-size: 13px;
     text-decoration: none;
     margin: 15px 0 10px;
+    transition: color 0.3s;
+}
+
+.container a.forgot-password {
+    color: #0055ff;
+    font-weight: 500;
+}
+
+.container a.forgot-password:hover {
+    text-decoration: underline;
 }
 
 .container button {
@@ -71,6 +80,11 @@ body {
     text-transform: uppercase;
     margin-top: 10px;
     cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.container button:hover {
+    background-color: #0044cc;
 }
 
 .container button.hidden {
@@ -131,33 +145,14 @@ body {
 }
 
 @keyframes move {
-
-    0%,
-    49.99% {
+    0%, 49.99% {
         opacity: 0;
         z-index: 1;
     }
-
-    50%,
-    100% {
+    50%, 100% {
         opacity: 1;
         z-index: 5;
     }
-}
-
-.social-icons {
-    margin: 20px 0;
-}
-
-.social-icons a {
-    border: 1px solid #ccc;
-    border-radius: 20%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 3px;
-    width: 40px;
-    height: 40px;
 }
 
 .toggle-container {
@@ -226,85 +221,6 @@ body {
     transform: translateX(200%);
 }
 
-/* Animação de carregamento */
-#loading {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.loader {
-    border: 8px solid #f3f3f3;
-    border-top: 8px solid #0055ff;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Animação de transição */
-#transitionOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #0055ff; /* Cor de fundo da animação */
-    z-index: 1000;
-    opacity: 0;
-    pointer-events: none; /* Permite interação com a tela durante a animação */
-    transition: opacity 1s ease-in-out;
-}
-
-/* Efeito de fade-out */
-.fade-out {
-    opacity: 1 !important;
-}
-
-/* Mensagem de confirmação */
-.confirmation-message {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #0055ff;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    display: none;
-    z-index: 1001;
-}
-
-/* Overlay de transição */
-#transitionOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #0055ff;
-    z-index: 1000;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 1s ease-in-out;
-}
-
-.fade-out {
-    opacity: 1 !important;
-}
-/* Mensagens de confirmação - Versão corrigida */
 .confirmation-message {
     position: fixed;
     top: 20px;
@@ -323,11 +239,11 @@ body {
 }
 
 .confirmation-message.success {
-    background-color: #4CAF50; /* Verde */
+    background-color: #4CAF50;
 }
 
 .confirmation-message.error {
-    background-color: #F44336; /* Vermelho */
+    background-color: #F44336;
 }
 
 @keyframes fadeIn {
@@ -335,7 +251,6 @@ body {
     to { opacity: 1; transform: translate(-50%, 0); }
 }
 
-/* Tela de transição */
 .transition-screen {
     position: fixed;
     top: 0;
@@ -365,4 +280,9 @@ body {
     border-top-color: white;
     animation: spin 1s ease-in-out infinite;
     margin-top: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
