@@ -21,7 +21,7 @@ try {
     $stmt->execute([$_SESSION['usuario_id']]);
     $eventos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
-    // Formata os eventos para o formato esperado pelo JavaScript
+    // Formata os eventos para o formato do JavaScript
     $formattedEvents = [];
     foreach ($eventos as $evento) {
         $key = $evento['data_formatada'];
@@ -59,14 +59,6 @@ try {
         <div class="logo_content">
             <img src="./assets/img/logo-flowteams.png" alt="Logo FlowTeams" class="logo">
             <span class="logo_name">FlowTeams</span>
-        </div>
-
-        <!-- Barra de busca dentro do sidebar -->
-        <div class="search-bar-container">
-            <div class="search-icon-container">
-                <i class="bi bi-search search-icon"></i>
-            </div>
-            <input type="text" placeholder="Pesquise aqui" class="search-bar">
         </div>
 
         <!-- Menu com opções de navegação dispostas verticalmente -->

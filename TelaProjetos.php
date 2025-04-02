@@ -27,14 +27,6 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
             <span class="logo_name">FlowTeams</span>
         </div>
 
-        <!-- Barra de busca dentro do sidebar -->
-        <div class="search-bar-container">
-            <div class="search-icon-container">
-                <i class="bi bi-search search-icon"></i>
-            </div>
-            <input type="text" placeholder="Pesquise aqui" class="search-bar">
-        </div>
-
         <!-- Menu com opções de navegação dispostas verticalmente -->
         <div class="menu">
             <button onclick="window.location.href='./Telainicial.php'">

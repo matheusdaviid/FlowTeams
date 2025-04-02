@@ -1,12 +1,3 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Recupera o idioma salvo ao carregar a página
-    const userLanguage = localStorage.getItem('userLanguage') || 'Português (Brasil)';
-    document.getElementById('language-text').textContent = userLanguage;
-
-    // Configura os eventos dos switches de acessibilidade
-    setupAccessibilitySwitches();
-});
-
 // Função para configurar os switches
 function setupAccessibilitySwitches() {
     const switches = {
@@ -73,56 +64,4 @@ function updateEmail(newEmail) {
     .then(response => response.json())
     .then(data => data.success)
     .catch(() => false);
-}
-
-// Lista de idiomas
-const languages = [
-    { code: 'pt', name: 'Português (Brasil)' },
-    { code: 'en', name: 'Inglês' },
-    { code: 'es', name: 'Espanhol' },
-    { code: 'fr', name: 'Francês' },
-    { code: 'de', name: 'Alemão' },
-    { code: 'zh', name: 'Chinês (Mandarim)' },
-    { code: 'hi', name: 'Hindi' },
-    { code: 'ar', name: 'Árabe' },
-    { code: 'ru', name: 'Russo' },
-    { code: 'ja', name: 'Japonês' },
-    { code: 'it', name: 'Italiano' },
-    { code: 'ko', name: 'Coreano' },
-    { code: 'nl', name: 'Holandês' },
-    { code: 'tr', name: 'Turco' },
-    { code: 'sv', name: 'Sueco' }
-];
-
-// Função para abrir o modal de idiomas
-function openLanguageModal() {
-    const modal = document.getElementById('languageModal');
-    const languageList = document.getElementById('language-list');
-
-    // Limpa a lista de idiomas
-    languageList.innerHTML = '';
-
-    // Preenche a lista de idiomas
-    languages.forEach(lang => {
-        const li = document.createElement('li');
-        li.textContent = lang.name;
-        li.addEventListener('click', () => selectLanguage(lang));
-        languageList.appendChild(li);
-    });
-
-    // Exibe o modal
-    modal.style.display = 'flex';
-}
-
-// Função para fechar o modal de idiomas
-function closeLanguageModal() {
-    const modal = document.getElementById('languageModal');
-    modal.style.display = 'none';
-}
-
-// Função para selecionar um idioma
-function selectLanguage(lang) {
-    localStorage.setItem('userLanguage', lang.name);
-    document.getElementById('language-text').textContent = lang.name;
-    closeLanguageModal();
 }

@@ -20,13 +20,7 @@
         <div class="form-container sign-up">
             <form id="signupForm" action="processar_cadastro.php" method="POST">
                 <h1>Criar Conta</h1>
-                <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-                <span>ou use seu e-mail para se registrar</span>
+                <span>use seu e-mail para se Inscrever</span>
                 <input type="email" id="signupEmail" name="email" placeholder="E-mail" required>
                 <input type="password" id="signupPassword" name="password" placeholder="Senha" required>
                 <button type="submit">Inscrever-se</button>
@@ -37,13 +31,7 @@
         <div class="form-container sign-in">
             <form id="loginForm" action="processar_login.php" method="POST">
                 <h1>Entrar</h1>
-                <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-                <span>ou use seu e-mail e senha</span>
+                <span>use seu e-mail e senha cadastrados</span>
                 <input type="email" id="loginEmail" name="email" placeholder="E-mail" required>
                 <input type="password" id="loginPassword" name="password" placeholder="Senha" required>
                 <a href="#">Esqueceu sua senha?</a>
@@ -75,6 +63,14 @@
     <div id="confirmationMessage" class="confirmation-message"></div>
 
     <script src="./javaScript/TelaLogin.js"></script>
+
+        <!-- Tela de transição simplificada -->
+        <div class="transition-screen" id="transitionScreen">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="./javaScript/TelaLogin.js"></script>
+</body>
 </body>
 
 </html>

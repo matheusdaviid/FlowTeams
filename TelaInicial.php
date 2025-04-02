@@ -28,13 +28,6 @@ require_once 'conexao.php';
             <span class="logo_name">FlowTeams</span>
         </div>
 
-        <div class="search-bar-container">
-            <div class="search-icon-container">
-                <i class="bi bi-search search-icon"></i>
-            </div>
-            <input type="text" placeholder="Pesquise aqui" class="search-bar">
-        </div>
-
         <div class="menu">
             <button onclick="window.location.href='./Telainicial.php'" class="active">
                 <i class="bi bi-house"></i>

@@ -43,7 +43,7 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
                 <p>Isso serve para que os membros da sua equipe reconheçam você no FlowTeams.</p>
             </div>
 
-            <!-- Container branco para endereço de e-mail e idioma -->
+            <!-- Container branco para endereço de e-mail -->
             <div class="info-container">
                 <div class="info-item">
                     <span>Endereço de e-mail</span>
@@ -52,14 +52,8 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
                         <button class="edit-button" onclick="toggleEmailEdit()"><i class="bi bi-pencil"></i> Editar</button>
                     </div>
                 </div>
-                <div class="info-item">
-                    <span>Idioma</span>
-                    <p id="language-text">Português (Brasil)</p>
-                    <button class="edit-button" onclick="openLanguageModal()"><i class="bi bi-pencil"></i> Editar</button>
-                </div>
             </div>
         </div>
-
         <!-- Seção de Configurações -->
         <div id="configuracoes" class="header">
             <h1>Configurações</h1>
@@ -121,17 +115,6 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
                 </label>
                 <label for="open-links">Os links do FlowTeams são abertos no app para computador, não no seu navegador.</label>
             </div>
-        </div>
-    </div>
-
-    <!-- Modal de seleção de idioma -->
-    <div id="languageModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeLanguageModal()">&times;</span>
-            <h2>Selecione um idioma</h2>
-            <ul id="language-list">
-                <!-- Lista de idiomas será preenchida dinamicamente via JavaScript -->
-            </ul>
         </div>
     </div>
 
