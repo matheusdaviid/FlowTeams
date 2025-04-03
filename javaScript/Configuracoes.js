@@ -1,4 +1,4 @@
-// Função para configurar os switches
+
 function setupAccessibilitySwitches() {
     const switches = {
         'shortcuts': false,
@@ -7,7 +7,7 @@ function setupAccessibilitySwitches() {
         'open-links': false
     };
 
-    // Carrega as configurações salvas
+    
     Object.keys(switches).forEach(id => {
         const savedValue = localStorage.getItem(`setting_${id}`);
         if (savedValue !== null) {
@@ -16,7 +16,7 @@ function setupAccessibilitySwitches() {
         }
     });
 
-    // Configura os event listeners
+    
     Object.keys(switches).forEach(id => {
         document.getElementById(id).addEventListener('change', function() {
             localStorage.setItem(`setting_${id}`, this.checked);
@@ -24,7 +24,6 @@ function setupAccessibilitySwitches() {
     });
 }
 
-// Função para alternar entre edição e leitura do e-mail
 function toggleEmailEdit() {
     const emailInput = document.getElementById('email-input');
     const editButton = document.querySelector('.email-edit-container .edit-button');
@@ -36,7 +35,7 @@ function toggleEmailEdit() {
     } else {
         const newEmail = emailInput.value.trim();
         if (newEmail && newEmail.includes('@')) {
-            // Envia a alteração para o servidor
+         
             updateEmail(newEmail).then(success => {
                 if (success) {
                     emailInput.readOnly = true;
@@ -52,7 +51,7 @@ function toggleEmailEdit() {
     }
 }
 
-// Função para atualizar o e-mail no servidor
+
 function updateEmail(newEmail) {
     return fetch('atualizar_email.php', {
         method: 'POST',

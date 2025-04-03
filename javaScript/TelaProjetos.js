@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const projectForm = document.getElementById('projectForm');
-    const projectsGrid = document.getElementById('projectsGrid');
+    const projectsGrid = document.querySelector('.projects-grid');
     const btnAlterar = document.querySelector('.btn-alterar');
     const btnExcluir = document.querySelector('.btn-excluir');
     const successPopup = document.getElementById('successPopup');
@@ -8,17 +8,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let selectedProject = null;
 
-    // Função para exibir pop-up de sucesso
+    // Função para mostrar popup de sucesso
     function showSuccessPopup(message) {
         successMessage.textContent = message;
         successPopup.classList.add('show');
         setTimeout(() => {
             successPopup.classList.remove('show');
-            window.location.reload(); // Recarrega a página para atualizar a lista
+            window.location.reload();
         }, 2000);
     }
 
-    // Função para validar as datas
+    // Função para validar datas
     function validateDates(startDate, endDate) {
         const start = new Date(startDate);
         const end = new Date(endDate);
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return true;
     }
 
-    // Envio do formulário
+    // Evento de submit do formulário
     projectForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 showSuccessPopup(data.message);
                 projectForm.reset();
                 document.getElementById('projectId').value = '';
+                btnExcluir.style.display = 'none';
             } else {
                 alert(data.message);
             }
@@ -62,54 +63,54 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Seleciona projeto ao clicar
+    // Evento de clique nos cards de projeto
     projectsGrid.addEventListener('click', function(e) {
         const projectCard = e.target.closest('.project-card');
         if (!projectCard) return;
 
-        // Remove a seleção anterior
+        // Remove seleção anterior
         if (selectedProject) {
             selectedProject.classList.remove('selected');
         }
         
-        // Adiciona a nova seleção
+        // Define novo projeto selecionado
         selectedProject = projectCard;
         selectedProject.classList.add('selected');
         
-        // Mostra o botão de excluir
+        // Mostra botões de edição e exclusão
+        btnAlterar.style.display = 'inline-block';
         btnExcluir.style.display = 'inline-block';
     });
 
-    // Alterar projeto
+    // Evento de clique no botão Alterar
     btnAlterar.addEventListener('click', function() {
         if (selectedProject) {
             const projectId = selectedProject.getAttribute('data-id');
             const title = selectedProject.querySelector('h3').textContent;
             const description = selectedProject.querySelector('.project-description').textContent;
             
-            // Obtém as datas dos spans
-            const dateSpans = selectedProject.querySelectorAll('.project-meta span');
-            const startDateText = dateSpans[0].textContent.replace(' Início: ', '').trim();
-            const endDateText = dateSpans[1].textContent.replace(' Término: ', '').trim();
+            // Extrai datas formatadas
+            const dateElements = selectedProject.querySelectorAll('.project-meta span');
+            const startDateText = dateElements[0].textContent.split(' ')[1];
+            const endDateText = dateElements[1].textContent.split(' ')[1];
             
-            // Converte datas do formato brasileiro para o formato do input date
-            function brToDate(brDate) {
-                const [day, month, year] = brDate.split('/');
-                return `${year}-${month}-${day}`;
+            // Converte formato dd/mm/yyyy para yyyy-mm-dd
+            function brToUsDate(dateStr) {
+                const [day, month, year] = dateStr.split('/');
+                return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
             }
 
-            // Preenche o formulário com os dados do projeto selecionado
             document.getElementById('projectId').value = projectId;
             document.getElementById('projectTitle').value = title;
-            document.getElementById('startDate').value = brToDate(startDateText);
-            document.getElementById('endDate').value = brToDate(endDateText);
+            document.getElementById('startDate').value = brToUsDate(startDateText);
+            document.getElementById('endDate').value = brToUsDate(endDateText);
             document.getElementById('projectDescription').value = description;
         } else {
             alert('Selecione um projeto para editar.');
         }
     });
 
-    // Excluir projeto
+    // Evento de clique no botão Excluir
     btnExcluir.addEventListener('click', function() {
         if (selectedProject) {
             if (confirm('Tem certeza que deseja excluir este projeto?')) {
@@ -139,4 +140,8 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Selecione um projeto para excluir.');
         }
     });
+
+    // Esconde botões de ação inicialmente
+    btnAlterar.style.display = 'none';
+    btnExcluir.style.display = 'none';
 });

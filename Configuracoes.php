@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Verifica se o usuário está logado
 if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
     header('Location: TelaLogin.php');
     exit;
@@ -17,7 +16,7 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
-    <!-- Menu lateral esquerdo -->
+   
     <div class="sidebar">
         <div class="logo_content">
             <img src="./assets/img/logo-flowteams.png" alt="Logo FlowTeams" class="logo">
@@ -30,12 +29,12 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
         </div>
     </div>
 
-    <!-- Conteúdo principal -->
+ 
     <div class="main-content">
-        <!-- Seção de Perfil -->
+      
         <div id="perfil" class="profile-section">
             <div class="profile-info">
-                <!-- Ícone de perfil grande -->
+          
                 <div class="profile-icon-large">
                     <i class="bi bi-person-circle"></i>
                 </div>
@@ -43,7 +42,7 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
                 <p>Isso serve para que os membros da sua equipe reconheçam você no FlowTeams.</p>
             </div>
 
-            <!-- Container branco para endereço de e-mail -->
+    
             <div class="info-container">
                 <div class="info-item">
                     <span>Endereço de e-mail</span>
@@ -54,12 +53,12 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
                 </div>
             </div>
         </div>
-        <!-- Seção de Configurações -->
+       
         <div id="configuracoes" class="header">
             <h1>Configurações</h1>
         </div>
 
-        <!-- Opções de configuração -->
+     
         <div class="settings-options">
             <h2>Geral</h2>
             <div class="option">
@@ -84,7 +83,7 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
             </div>
         </div>
 
-        <!-- Configurações de acessibilidade -->
+       
         <div class="accessibility-settings">
             <h2>Acessibilidade</h2>
             <div class="setting">

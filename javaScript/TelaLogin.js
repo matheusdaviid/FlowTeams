@@ -7,11 +7,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const confirmationMessage = document.getElementById('confirmationMessage');
     const transitionScreen = document.getElementById('transitionScreen');
 
-    // Alternar entre login e cadastro
+   
     registerBtn.addEventListener('click', () => container.classList.add("active"));
     loginBtn.addEventListener('click', () => container.classList.remove("active"));
 
-    // Mostrar mensagens
+ 
     function showMessage(message, isError = false) {
         confirmationMessage.textContent = message;
         confirmationMessage.className = 'confirmation-message ' + (isError ? 'error' : 'success');
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
 
-    // Validar senha
+    
     function validatePassword(password) {
         const errors = [];
         
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return errors;
     }
 
-    // Login
+    
     loginForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(() => showMessage('Erro ao conectar com o servidor', true));
     });
 
-    // Cadastro
+ 
     signupForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(() => showMessage('Erro ao conectar', true));
     });
 
-    // Transição para a tela de esqueceu senha
+    
     document.querySelectorAll('a.forgot-password').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -134,4 +134,48 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 800);
         });
     });
+});
+
+function validateEmail(email) {
+    const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return re.test(email);
+}
+
+loginForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const email = this.email.value.trim();
+    const senha = this.password.value;
+
+    if (!email || !senha) {
+        showMessage('Preencha todos os campos', true);
+        return;
+    }
+
+    if (!validateEmail(email)) {
+        showMessage('Por favor, insira um e-mail válido (exemplo@dominio.com)', true);
+        return;
+    }
+
+   
+});
+
+
+signupForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const email = this.email.value.trim();
+    const senha = this.password.value;
+
+    if (!email || !senha) {
+        showMessage('Preencha todos os campos', true);
+        return;
+    }
+
+    if (!validateEmail(email)) {
+        showMessage('Por favor, insira um e-mail válido (exemplo@dominio.com)', true);
+        return;
+    }
+
+    
 });

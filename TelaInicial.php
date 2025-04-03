@@ -1,13 +1,12 @@
 <?php
 session_start();
 
-// Verifica se o usuário está logado
+
 if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
     header('Location: TelaLogin.php');
     exit;
 }
 
-// Conexão com o banco de dados
 require_once 'conexao.php';
 ?>
 <!DOCTYPE html>

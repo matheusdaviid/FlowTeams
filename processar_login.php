@@ -11,6 +11,11 @@ try {
         exit;
     }
 
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo json_encode(['success' => false, 'message' => 'Por favor, insira um e-mail válido (exemplo@dominio.com)']);
+        exit;
+    }
+
     $stmt = $pdo->prepare("SELECT id, email, senha FROM tb_cadastro WHERE email = ?");
     $stmt->execute([$email]);
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);

@@ -415,3 +415,88 @@ body {
     transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 85, 255, 0.2);
 }
+/* Estilos para os botões de ação */
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-save, .btn-alterar, .btn-excluir {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-save {
+    background-color: #0055ff;
+    color: white;
+}
+
+.btn-alterar {
+    background-color: #605F5F;
+    color: white;
+}
+
+.btn-excluir {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.btn-save:hover {
+    background-color: #0044cc;
+}
+
+.btn-alterar:hover {
+    background-color: #4d4d4d;
+}
+
+.btn-excluir:hover {
+    background-color: #cc0000;
+}
+
+/* Estilo para projeto selecionado */
+.project-card.selected {
+    border: 2px solid #0055ff;
+    background-color: #e6f0ff;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 85, 255, 0.2);
+    position: relative;
+}
+
+.project-card.selected::after {
+    content: 'Selecionado';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #0055ff;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+/* Ajustes para o popup de sucesso */
+.popup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.popup.show {
+    opacity: 1;
+    visibility: visible;
+}

@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
             dayElement.classList.add('day');
             dayElement.textContent = day;
 
-            // Verifica se é o dia atual
+          
             if (day === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear()) {
                 dayElement.classList.add('today');
             }
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (events[eventKey]) {
                 dayElement.classList.add('event');
                 
-                // Adiciona informações dos eventos no dia
+               
                 const dayEvents = document.createElement('div');
                 dayEvents.classList.add('day-events');
                 dayEvents.textContent = events[eventKey].name;
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const result = await response.json();
 
                 if (result.success) {
-                    // Atualiza tanto o localStorage quanto a exibição
+                  
                     events[selectedDay] = { 
                         name: eventName, 
                         description: eventDescription, 
@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', function () {
         eventPriorityInput.value = 'normal';
     });
 
-    // Fechar pop-ups ao clicar fora deles
+    
     window.addEventListener('click', (event) => {
         if (event.target === eventPopup) {
             eventPopup.style.display = 'none';
@@ -231,6 +231,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Inicializa o calendário
+   
     updateCalendar();
 });
